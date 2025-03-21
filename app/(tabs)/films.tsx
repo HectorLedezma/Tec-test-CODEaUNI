@@ -1,13 +1,11 @@
+import { FullScreen } from '@/components/FullScreen';
+import SWText from '@/components/SWText';
 import { Image, StyleSheet, Platform, View, Text } from 'react-native';
 
 export default function Films() {
   return (
-    <View>
-        <Text>Films</Text>
-    </View>
+    <FullScreen>
+      <SWText>Films</SWText>
+    </FullScreen>
   );
 }
-
-const styles = StyleSheet.create({
-
-});

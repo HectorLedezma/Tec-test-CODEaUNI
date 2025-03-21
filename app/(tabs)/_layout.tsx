@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
-import { React, useEffect } from 'react';
-import { Platform } from 'react-native';
+import { useEffect } from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
 import { Stack, useNavigation } from 'expo-router';
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -15,12 +15,14 @@ export default function TabLayout() {
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
-  // options={{headerTitle:"indiceee"}}
   return (
     <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="films" />
-        <Stack.Screen name="planets" />
-        <Stack.Screen name="characters" />
+      <Stack.Screen name="films" />
+      <Stack.Screen name="planets" />
+      <Stack.Screen name="characters" />
     </Stack>
+    
+    
   );
+
 }

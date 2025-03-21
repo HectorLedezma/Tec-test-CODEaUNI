@@ -1,15 +1,13 @@
+import { FullScreen } from '@/components/FullScreen';
+import SWText from '@/components/SWText';
 import { Image, StyleSheet, Platform, View, Text } from 'react-native';
 
 
 
 export default function HomeScreen() {
   return (
-    <View>
-        <Text>Index</Text>
-    </View>
+    <FullScreen>
+      <SWText>Index</SWText>
+    </FullScreen>
   );
 }
-
-const styles = StyleSheet.create({
-
-});
