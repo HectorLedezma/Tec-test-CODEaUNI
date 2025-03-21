@@ -1,11 +1,9 @@
 import { Image, StyleSheet, Platform, View, Text } from 'react-native';
 
-
-
-export default function HomeScreen() {
+export default function Characters() {
   return (
     <View>
-        <Text>Index</Text>
+        <Text>Characters</Text>
     </View>
   );
 }
