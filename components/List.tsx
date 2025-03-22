@@ -4,17 +4,23 @@ import SWBox from "./SWBox";
 
 type Props = PropsWithRef<{}>
 
-function SWList(props:Props){
+function SWList({data}:Props){
 
-    const CreateList = (data:[]) =>{
-        
+    const CreateList = (data:any) =>{
+        var Element = [];
+        data.forEach((item:any)=>{
+            Element.push(
+                <SWBox>
+                    <Text style={styles.textElement}>{("name" in item)? item.name : item.title}</Text>
+                </SWBox>
+            )
+        })
+        return Element;
     }
 
     return(
         <View style={styles.listContainer}>
-            <SWBox>
-                <Text style={styles.textElement}>{"Tatooine"}</Text>
-            </SWBox>
+            {CreateList(data)}
         </View>
     )
 }
