@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
   textColor:{
     color:"#ffc500",
     textAlign:"center",
-    fontSize:60
+    fontSize:50,
+    transform:"perspective(200px) rotateX(40deg)",
+    fontWidth:"600"
   }
 });
 
