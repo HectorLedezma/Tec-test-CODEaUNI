@@ -11,21 +11,21 @@ export default function HomeScreen() {
       <View style={styles.menuContainer}>
         <View>
             <SWButton onPress={() =>
-                    router.replace('characters')
+                    router.navigate('characters')
                 }>
                 PERSONAJES
             </SWButton>
         </View>
         <View>
             <SWButton onPress={() =>
-                     router.replace('planets')
+                     router.navigate('planets')
                  }>
                 PLANETAS
             </SWButton>
         </View>
         <View>
             <SWButton onPress={() =>
-                 router.replace('films')
+                 router.navigate('films')
              }>
                 PELICULAS
             </SWButton>
