@@ -31,10 +31,11 @@ export function FullScreen({children}:Props){
 
 const styles = StyleSheet.create({
     fondo:{
+        flex: 1,
         backgroundColor:"#000000",
         backgroundImage: "radial-gradient(white 1px, transparent 1px)",
         backgroundSize: "50px 30px",
-        height:"100%"
+
     },
     container: {
         flex: 1,
