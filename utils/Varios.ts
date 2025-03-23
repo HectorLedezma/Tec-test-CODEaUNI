@@ -9,18 +9,26 @@ class Varios{
         return result;
     }
     async EnToEs(texto: string) {
-        const response = await fetch("https://libretranslate.com/translate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                q: texto,
-                source: "en",
-                target: "es",
-                format: "text"
-            })
-        });
-        const data = await response.json();
-        return data.translatedText;
+        try {
+            const response = await fetch("https://libretranslate.com/translate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    q: texto,
+                    source: "en",
+                    target: "es",
+                    format: "text"
+                })
+            });
+
+            const data = await response.json();
+            console.log("Respuesta de la API:", data);
+
+            return data.translatedText || "Error: No se pudo traducir";
+        } catch (error) {
+            console.error("Error en la traducción:", error);
+            return "Error en la traducción";
+        }
     }
 }
 
