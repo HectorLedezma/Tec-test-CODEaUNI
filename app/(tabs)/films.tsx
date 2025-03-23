@@ -4,43 +4,35 @@ import { FullScreen } from '@/components/FullScreen';
 import SWText from '@/components/SWText';
 import List from '@/components/List';
 import Connection from '@/utils/ApiConnection.ts'
-import Varios from '@/utils/Varios.ts'
+import dictionary from '@/utils/dictionary.json'
 
 export default function Films() {
-
-    const utils = new Varios();
 
     const [part,setPart] = useState("");
 
     const [data,setData] = useState([]);
 
-    const translate = async (data:any[]) =>{
-
+    const translate = (data:[]) =>{
         let final = [];
-        let results = data.results;
         try{
-            await results.forEach((element)=>{
-                element.title = utils.EnToEs(element.title);
-                element.opening_crawl = utils.EnToEs(element.opening_crawl);
-                //console.log(element);
+            data.forEach((element)=>{
+                //console.log("\n",element.title)
+                element.title = dictionary.films[element.episode_id][element.title];
+                element.opening_crawl = dictionary.films[element.episode_id][element.opening_crawl];
+                //console.log("\n",element.title)
                 final.push(element);
             });
-            data.results = final;
         }catch(error:any){
             console.log("\nError en función: ",error)
+            final = data;
         }
-        return data;
+        return final;
     }
 
     const update = (paramURI:string) =>{
         const con = new Connection();
         con.getFilm(paramURI).then(dataP=>{
-            translate(dataP).then(dataT=>{
-                setData(dataT);
-            }).catch(error=>{
-                console.log("\nError en traducción: ",error);
-                setData([]);
-            });
+            setData(translate(dataP.results));
         }).catch(error=>{
             console.log("Error en recuperación: ",error);
             setData([]);
@@ -55,7 +47,7 @@ export default function Films() {
     <FullScreen>
       <SWText>Peliculas</SWText>
       <ScrollView>
-        <List data={data.results}/>
+        <List data={data}/>
       </ScrollView>
     </FullScreen>
   );
