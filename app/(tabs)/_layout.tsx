@@ -13,9 +13,9 @@ export default function TabLayout() {
   }, [navigation]);
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="characters"/>
-      <Stack.Screen name="planets" />
-      <Stack.Screen name="films" />
+      <Stack.Screen name="characters/[id]"/>
+      <Stack.Screen name="planets/[id]" />
+      <Stack.Screen name="films/[id]" />
     </Stack>
   );
 

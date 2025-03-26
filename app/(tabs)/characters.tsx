@@ -1,7 +1,8 @@
 import { ScrollView, Image, StyleSheet, Platform, View, Text } from 'react-native';
 import { useLocalSearchParams } from "expo-router";
 import { useState, useEffect } from 'react'
-import SWText from '@/components/SWText';
+import SWScreen from '@/components/SWScreen';
+import BackButton from  '@/components/BackButton';
 import List from '@/components/List';
 import NavMenu from '@/components/NavMenu';
 import { FullScreen } from '@/components/FullScreen';
@@ -30,22 +31,17 @@ export default function Characters() {
     },[]);
 //?page=2
   return (
-    <FullScreen>
-      <SWText>PERSONAJES</SWText>
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={true}
-      >
-        <List data={data.results}/>
-        <NavMenu prev={()=>{
-                update(data.previous !== null? utils.recortarString(data.previous,"?"):"")
-            }}
-            next={()=>{
-                update(data.next !== null? utils.recortarString(data.next,"?"):"")
-            }}
-        />
-      </ScrollView>
-    </FullScreen>
+      <SWScreen title="PERSONAJES">
+          <List data={data.results} page="characters"/>
+          <NavMenu prev={()=>{
+                  update(data.previous !== null? utils.recortarString(data.previous,"?"):"")
+              }}
+              next={()=>{
+                  update(data.next !== null? utils.recortarString(data.next,"?"):"")
+              }}
+          />
+          <BackButton/>
+      </SWScreen>
   );
 }
 const styles = StyleSheet.create({

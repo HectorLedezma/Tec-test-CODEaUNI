@@ -1,8 +1,9 @@
 import { ScrollView, Image, StyleSheet, Platform, View, Text } from 'react-native';
 import { useState, useEffect } from 'react'
 import { FullScreen } from '@/components/FullScreen';
-import SWText from '@/components/SWText';
+import SWScreen from '@/components/SWScreen';
 import List from '@/components/List';
+import BackButton from  '@/components/BackButton';
 import Connection from '@/utils/ApiConnection.ts'
 import dictionary from '@/utils/dictionary.json'
 
@@ -18,7 +19,6 @@ export default function Films() {
             data.forEach((element)=>{
                 //console.log("\n",element.title)
                 element.title = dictionary.films[element.episode_id][element.title];
-                element.opening_crawl = dictionary.films[element.episode_id][element.opening_crawl];
                 //console.log("\n",element.title)
                 final.push(element);
             });
@@ -44,11 +44,9 @@ export default function Films() {
     },[]);
 
   return (
-    <FullScreen>
-      <SWText>Peliculas</SWText>
-      <ScrollView>
-        <List data={data}/>
-      </ScrollView>
-    </FullScreen>
+      <SWScreen title="PELICULAS">
+            <List data={data} page="films"/>
+            <BackButton/>
+      </SWScreen>
   );
 }

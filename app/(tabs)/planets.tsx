@@ -1,10 +1,8 @@
-import { ScrollView, Image, StyleSheet, View, Text } from 'react-native';
-import { FullScreen } from '@/components/FullScreen';
 import { useState, useEffect } from 'react'
-import SWBox from '@/components/SWBox';
-import SWText from '@/components/SWText';
+import SWScreen from '@/components/SWScreen';
 import List from '@/components/List';
 import NavMenu from '@/components/NavMenu';
+import BackButton from  '@/components/BackButton';
 import Connection from '@/utils/ApiConnection.ts'
 import Varios from '@/utils/Varios.ts'
 
@@ -28,10 +26,8 @@ export default function Planets() {
         update(part)
     },[]);
   return (
-    <FullScreen>
-      <SWText>PLANETAS</SWText>
-      <ScrollView>
-        <List data={data.results}/>
+    <SWScreen title="PLANETAS">
+        <List data={data.results} page="planets"/>
         <NavMenu prev={()=>{
                 update(data.previous !== null? utils.recortarString(data.previous,"?"):"")
             }}
@@ -39,7 +35,7 @@ export default function Planets() {
                 update(data.next !== null? utils.recortarString(data.next,"?"):"")
             }}
         />
-      </ScrollView>
-    </FullScreen>
+        <BackButton/>
+    </SWScreen>
   );
 }
