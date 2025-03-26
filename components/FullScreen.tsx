@@ -1,4 +1,5 @@
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, useColorScheme } from "react-native";
+import useThemeColor from "@/hooks/useThemeColor.ts";
 import type { PropsWithChildren, ReactElement } from 'react';
 
 type Props = PropsWithChildren<{}>
@@ -16,8 +17,9 @@ const generateStars = (count: number) => {
 const stars = generateStars(100); // Número de estrellas
 
 export function FullScreen({children}:Props){
+    const colorScheme = useColorScheme();
     return(
-        <View style={styles.container}>
+        <View style={[styles.container, colorScheme === "none"]}>
             {stars.map((star) => (
                 <View key={star.key} style={[styles.star, { top: star.top, left: star.left }]}/>
             ))}
@@ -35,19 +37,18 @@ const styles = StyleSheet.create({
         backgroundColor:"#000000",
         backgroundImage: "radial-gradient(white 1px, transparent 1px)",
         backgroundSize: "50px 30px",
-
     },
     container: {
         flex: 1,
         backgroundColor: "black",
         position: "relative",
-        padding:"10%"
+        padding:"10%",
     },
     star: {
         position: "absolute",
-        width: 2,
-        height: 2,
-        backgroundColor: "white",
-        borderRadius: 1, // Para que sean más circulares
+        width: 3,
+        height: 3,
+        backgroundColor: "rgba(162, 255, 255, 10)",
+        borderRadius: 10, // Para que sean más circulares
     },
 });

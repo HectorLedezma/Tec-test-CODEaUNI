@@ -1,19 +1,25 @@
 import React, { PropsWithChildren, PropsWithRef } from "react";
 import {Alert,  StyleSheet, Text, View } from "react-native";
-import SWBox from "./SWBox";
+import { router } from 'expo-router';
+import SWButton from "./SWButton";
+import Varios from '@/utils/Varios.ts'
 
 type Props = PropsWithRef<{}>
 
-function SWList({data}:Props){
+function SWList({data,page}:Props){
+    const utils = new Varios();
 
     const CreateList = (data:any) =>{
         let Element = [];
         try{
             data.forEach((item:any)=>{
                 Element.push(
-                    <SWBox key={("name" in item)? item.name : item.title}>
+                    <SWButton key={("name" in item)? item.name : item.title} onPress={()=>{
+                            let id = utils.getID(item.url);
+                            router.navigate(page+"/"+id)
+                        }}>
                         <Text style={styles.textElement}>{("name" in item)? item.name : item.title}</Text>
-                    </SWBox>
+                    </SWButton>
                 )
             })
         }catch(error:any){

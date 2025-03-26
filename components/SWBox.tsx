@@ -1,12 +1,17 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren,PropsWithRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-type Props = PropsWithChildren<{}>
+//type Props = PropsWithChildren<{}>
+type Props = PropsWithRef<{}>
 
+function SWBox({children,Class}:Props,){
 
-function SWBox({children}:Props){
+    const getStyle = (Class : any) =>{
+        return Class === undefined? "default" : "text";
+    }
+
     return(
-        <View style={styles.container}>
+        <View style={[styles.container,styles[getStyle(Class)]]}>
             {children}
         </View>
     )
@@ -14,13 +19,21 @@ function SWBox({children}:Props){
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:"#7fa7fe7F",
         padding:5,
         borderRadius:10,
-        borderColor:"#0c55f5",
         borderStyle:"solid",
         borderWidth:4,
-        margin:5
+        margin:5,
+        color:"white"
+    },
+    default:{
+        backgroundColor:"#7fa7fe7F",
+        borderColor:"#0c55f5",
+    },
+    text:{
+        backgroundColor:"#5252527F",
+        borderColor:"#3f3a3a",
+        marginBottom:"30%",
     }
   });
 
