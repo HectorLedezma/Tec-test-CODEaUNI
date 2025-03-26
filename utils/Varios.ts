@@ -8,6 +8,12 @@ class Varios{
         //console.log("resultado: "+result);
         return result;
     }
+    getID = (str:string)=>{
+        const largo = str.length;
+        const pl = str.length-3;
+        const ls = str.length-1;
+        return str.slice(pl,ls);
+    }
     async EnToEs(texto: string) {
         try {
             const response = await fetch("https://libretranslate.com/translate", {

@@ -22,6 +22,7 @@ class Connection{
 
     async getPlanet(id:String){
         try {
+            //console.log(uri_docs+'planets/'+id);
             const response = await axios.get(uri_docs+'planets/'+id);
             this.blog = response.data;
         } catch (error) {
@@ -33,6 +34,16 @@ class Connection{
     async getFilm(id:String){
         try {
             const response = await axios.get(uri_docs+'films/'+id);
+            this.blog = response.data;
+        } catch (error) {
+            console.log(error);
+        }
+        return this.blog;
+    }
+    async getAny(url:String){
+        try {
+            //console.log(url)
+            const response = await axios.get(url);
             this.blog = response.data;
         } catch (error) {
             console.log(error);
