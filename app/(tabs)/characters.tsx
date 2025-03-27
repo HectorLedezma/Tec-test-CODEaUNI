@@ -5,6 +5,7 @@ import SWScreen from '@/components/SWScreen';
 import BackButton from  '@/components/BackButton';
 import List from '@/components/List';
 import NavMenu from '@/components/NavMenu';
+import SearchInput from '@/components/SearchInput';
 import { FullScreen } from '@/components/FullScreen';
 import Connection from '@/utils/ApiConnection.ts'
 import Varios from '@/utils/Varios.ts'
@@ -13,6 +14,8 @@ export default function Characters() {
     const utils = new Varios();
 
     const [part,setPart] = useState("");
+
+    const [scan,setScan] = useState("");
 
     const [data,setData] = useState([]);
 
@@ -32,6 +35,7 @@ export default function Characters() {
 //?page=2
   return (
       <SWScreen title="PERSONAJES">
+          <SearchInput onChangeText={(newScan)=>{update("?search="+newScan);}}/>
           <List data={data.results} page="characters"/>
           <NavMenu prev={()=>{
                   update(data.previous !== null? utils.recortarString(data.previous,"?"):"")
