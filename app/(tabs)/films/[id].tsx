@@ -23,6 +23,25 @@ function Film(){
 
     const utils = new Varios();
 
+    const DateFormat = (date:string) =>{
+        const mes = {
+            "01":"Enero",
+            "02":"Febrero",
+            "03":"Marzo",
+            "04":"Abril",
+            "05":"Mayo",
+            "06":"Junio",
+            "07":"Julio",
+            "08":"Agosto",
+            "09":"Septiembre",
+            "10":"Octubre",
+            "11":"Noviembre",
+            "12":"Diciembre"
+        }
+        let dateArray = date.split('-');
+        return dateArray[2]+" de "+mes[dateArray[1]]+" de "+dateArray[0]
+    }
+
     const translate = (data:any) =>{
         let final = {};
         try{
@@ -39,6 +58,7 @@ function Film(){
     useEffect(()=>{
         const con = new Connection();
         con.getFilm(id).then(dataP=>{
+            dataP.release_date = DateFormat(dataP.release_date);
             setData(translate(dataP));
         }).catch(error=>{
             console.log(error);
