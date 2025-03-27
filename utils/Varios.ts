@@ -1,3 +1,4 @@
+import dictionary from './dictionary.json';
 
 class Varios{
     constructor(){}
@@ -36,6 +37,20 @@ class Varios{
             return "Error en la traducción";
         }
     }
+    translateOne = (word:string,cat:string)=>{
+        console.log(word,cat)
+        const result = dictionary.words[cat][word];
+        return result === undefined? word: result
+    }
+
+    translateMulti = (words:string[],cat:string)=>{
+        console.log(words,cat)
+        const result = words.map((w)=>{
+            return this.translateOne(w,cat);
+        });
+        return result.join(", ")
+    }
+
 }
 
 export default Varios;
