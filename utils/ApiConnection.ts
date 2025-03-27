@@ -20,6 +20,16 @@ class Connection{
         return this.blog;
     }
 
+    async SearchCharacter(name:String){
+        try {
+            const response = await axios.get(uri_docs+'people/?search='+name);
+            this.blog = response.data;
+        } catch (error) {
+            console.log(error);
+        }
+        return this.blog;
+    }
+
     async getPlanet(id:String){
         try {
             //console.log(uri_docs+'planets/'+id);
